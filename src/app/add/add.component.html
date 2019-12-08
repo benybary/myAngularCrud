@@ -1,1 +1,78 @@
-<p>add works!</p>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="myForm" action="">
+      <div class="form-group">
+        <label for="" class="col-md-4 col-xs-6">Product Name</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="product_Name"
+          #product_Name
+        />
+      </div>
+      <div
+        *ngIf="
+          myForm.controls['product_Name'].invalid &&
+          (myForm.controls['product_Name'].dirty ||
+            myForm.controls['product_Name'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="myForm.controls['product_Name'].errors.required">
+          Product Name is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-md-4 col-xs-6">Product Description</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="product_Description"
+          #product_Description
+        />
+      </div>
+      <div
+        *ngIf="
+          myForm.controls['product_Description'].invalid &&
+          (myForm.controls['product_Description'].dirty ||
+            myForm.controls['product_Description'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="myForm.controls['product_Description'].errors.required">
+          Product Description is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-md-4 col-xs-6">Product SKU</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="product_SKU"
+          #product_SKU
+        />
+      </div>
+
+      <div
+        *ngIf="
+          myForm.controls['product_SKU'].invalid &&
+          (myForm.controls['product_SKU'].dirty ||
+            myForm.controls['product_SKU'].touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="myForm.controls['product_SKU'].errors.required">
+          Product SKU is required!
+        </div>
+      </div>
+
+      <div class="form-group">
+          <button (click)="addProductTS(product_Name.value, product_Description.value, product_SKU.value)"
+          [disabled] = "myForm.pristine || myForm.invalid"
+          class="btn btn-primary">Add Product!</button>
+      </div>
+
+
+    </form>
+  </div>
+</div>

@@ -4,7 +4,7 @@ cors = require('cors'),
 mongoose = require('mongoose'),
 config = require('./DB');
 
-//const productRoute = require('./routes/product.route');
+const productRoute = require('./routes/product.route');
 
 // connect to mongoDB
 
@@ -18,8 +18,8 @@ mongoose.connect(config.DB, { useNewUrlParser: true}).then(() => {
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors);
-//app.use('/product', productRoute);
+app.use(cors());
+app.use('/product', productRoute);
 let port = process.env.PORT || 3000;
 
 app.listen(port, () => {

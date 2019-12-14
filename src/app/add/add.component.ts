@@ -32,6 +32,8 @@ export class AddComponent implements OnInit {
   }
 
   addProductTS(product_Name, product_Description, product_SKU){
+    console.log('Working at addProductTS');
+    
     return this.ps.addProduct(product_Name, product_Description, product_SKU);
   }
 }

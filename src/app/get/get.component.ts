@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from '../product.service'
+import Product from '../product'
+
 
 @Component({
   selector: 'app-get',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GetComponent implements OnInit {
 
-  constructor() { }
+  lstProducts: Product[];
+
+
+  constructor(private productService: ProductService) {
+
+   }
 
   ngOnInit() {
+    this.productService.getProducts().subscribe((data: Product[]) => {
+      this.lstProducts = data;
+    })
   }
+  // deleteProductGet(id){
+  //   this.productService.deleteProduct(id).subscribe(data => {
+  //     this.productService.getProducts().subscribe((data: Product[]) => {
+  //       this.lstProducts = data;
+  //     })
+  //   })
+  // }
 
 }

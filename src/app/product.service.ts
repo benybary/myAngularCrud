@@ -21,6 +21,8 @@ export class ProductService {
      };
      // Express -> Observable<T>
      // http.get().subscribe() <- Rule: http always "get" subscribe
+     console.log('Working on Post....');
+     
      this.http.post(`${this.uri}/add`, myObj).subscribe(res => {
        console.log('Add Done!');
      });

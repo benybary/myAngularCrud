@@ -12,6 +12,6 @@ let Product = new Schema({
     product_SKU: {
         type: Number
     }    
-})
+});
 
 module.exports = mongoose.model('Product', Product, 'Product')

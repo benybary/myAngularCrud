@@ -34,4 +34,33 @@ productRouter.route('/edit/:id').get((req, res) => {
     });
 });
 
+// update:id
+productRouter.route('/update/:id').post((req, res) => {
+    Product.findById(req.params.id, function(err, product){
+        if(!product) {return next(err)}
+        else {
+            product.product_Name = req.body.product_Name;
+            product.product_Description = req.body.product_Description;
+            product.product_SKU = req.body.product_SKU;
+            // Promise
+            product.save().then(product => {
+                res.json('Update completed!')
+                console.log(product)
+            }).catch(err => {
+                res.status(400).send('Unable to update!')
+            });
+        }       
+    });
+});
+
+// delete:id
+// http.get ALWAYS params
+// http.post ALWATS body
+productRouter.route('/delete/:id').get((req, res) => {
+    Product.findByIdAndDelete({_id: req.params.id}, (err) => {
+        if(err) res.json(err)
+        else res.json('Deletion Successful');
+    });
+});
+
 module.exports = productRouter;

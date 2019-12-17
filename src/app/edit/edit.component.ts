@@ -37,8 +37,8 @@ updateProductEdit(product_Name, product_Description, product_SKU){
     this.productService.getProducts().subscribe((data:Product[])=> {
       this.lstProductEdit = data;
       this.router.navigate(['product']);
-    })
-  })
+    });
+  });
 }
   getProductById(id){
     this.productService.editProduct(id).subscribe((data)=> {

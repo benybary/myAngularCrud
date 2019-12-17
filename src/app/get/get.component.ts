@@ -20,14 +20,16 @@ export class GetComponent implements OnInit {
   ngOnInit() {
     this.productService.getProducts().subscribe((data: Product[]) => {
       this.lstProducts = data;
+    });
+  }
+
+  
+  deleteProductGet(id){
+    this.productService.deleteProduct(id).subscribe(data => {
+      this.productService.getProducts().subscribe((data: Product[]) => {
+        this.lstProducts = data;
+      })
     })
   }
-  // deleteProductGet(id){
-  //   this.productService.deleteProduct(id).subscribe(data => {
-  //     this.productService.getProducts().subscribe((data: Product[]) => {
-  //       this.lstProducts = data;
-  //     })
-  //   })
-  // }
 
 }

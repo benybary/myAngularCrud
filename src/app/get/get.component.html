@@ -12,8 +12,8 @@
         <td>{{p.product_Name}}</td>
         <td>{{p.product_Description}}</td>
         <td>{{p.product_SKU}}</td>
-        <td><a [routerLink]="['edit', p._id]" class="btn btn-primary"></a>Edit</td>
-        <td><a (click)="deleteProduct(p._id)" class="btn btn-danger"></a>Delete</td>
+        <td><a [routerLink]="['edit', p._id]" class="btn btn-primary">Edit</a></td>
+        <td><a (click)="deleteProductGet(p._id)" class="btn btn-danger">Delete</a></td>
     </tr>
 </tbody>
     </table>

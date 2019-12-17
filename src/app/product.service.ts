@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
+import {Router} from "@angular/router"
+import { from } from 'rxjs';
 
 
 @Injectable({
@@ -10,7 +12,7 @@ export class ProductService {
   uri = 'http://localhost:3000/product';
 
   // DI - Loosely Coupled
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
    }
    // Add new product to DB
    addProduct(product_Name, product_Description, product_SKU ){
@@ -25,6 +27,7 @@ export class ProductService {
      
      this.http.post(`${this.uri}/add`, myObj).subscribe(res => {
        console.log('Add Done!');
+       this.router.navigate(['product']);
      });
      
    }
@@ -34,7 +37,7 @@ export class ProductService {
    }
    // Edit product by ID
    editProduct(id){
-     console.log('Edit Product');
+     //console.log('Edit Product');
      return this.http.get(`${this.uri}/edit/${id}`);
      
    }
@@ -46,16 +49,14 @@ export class ProductService {
       product_SKU: product_SKU
     };
     this.http.post(`${this.uri}/update/${id}`, myObj).subscribe((res) => {
-      console.log('Product Updated');
+      console.log(res + 'Product Updated');
       
     });
    };
 
    // Delete Product
    deleteProduct(id){
-    return this.http.get(`${this.uri}/delete/${id}`).subscribe((res) => {
-      console.log(res + "Item Deleted!");
-      
-    })
+   return this.http.get(`${this.uri}/delete/${id}`);
+    }
    }
-  }
+  
